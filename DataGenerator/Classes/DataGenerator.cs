@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DMP.Falck.GDP.DataGenerator.Interfaces;
 
-
-
 namespace DMP.Falck.GDP.DataGenerator.Classes
 {
     /// <summary>
@@ -17,14 +15,15 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
     /// </summary>
     public class DataGenerator : IDisposable, IDataGenerator
     {
-        public DataGenerator()
-        { }
 
         // Flag: Has Dispose already been called?
-        bool _disposed = false;
+        bool disposed = false;
 
         // Instantiate a SafeHandle instance.
-        SafeHandle _handle = new SafeFileHandle(IntPtr.Zero, true);
+        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
+
+        public DataGenerator()
+        { }
 
         // Public implementation of Dispose pattern callable by consumers.
         public void Dispose()
@@ -36,39 +35,60 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
         // Protected implementation of Dispose pattern.
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (disposed)
             {
                 return;
             }
 
             if (disposing)
             {
-                _handle.Dispose();
+                handle.Dispose();
                 // Free any other managed objects here.
                 //
             }
 
             // Free any unmanaged objects here.
             //
-            _disposed = true;
+            disposed = true;
         }
 
-        public bool GenerateData()
+        /// <summary>
+        /// Generate test data using Faker.dll.
+        /// TO DO - Inject log object
+        /// </summary>
+        /// <param name="noOfCustomersToBeGenerated">No of customers to be generated</param>
+        /// <returns>List of customers that has been generated successfully.</returns>
+        public List<Customer> GenerateData(int noOfCustomersToBeGenerated)
         {
-            bool isSuccess = false;
+            List<Customer> customerList = new List<Customer>();
 
-            var name = Faker.Name.FullName();  // "Alene Hayes"
-            Faker.Internet.Email(name);  // "alene_hayes@hartmann.co.uk"
-            Faker.Internet.UserName(name);  // "alene.hayes"
+            try
+            {
+                for (int count = 0; count < noOfCustomersToBeGenerated; count++)
+                {
+                    Customer customer = new Customer
+                    {
+                        FirstName = Faker.Name.First(),
+                        LastName = Faker.Name.Last(),
+                        CompanyName = Faker.Company.Name(),
+                        RoadName = Faker.Address.StreetName(),
+                        MobileNumber = Faker.Phone.Number(),
+                        Email = Faker.Internet.Email(),
+                        PostCode = Faker.Address.ZipCode(),
+                        District = Faker.Address.UsState()
+                    };
 
-            Faker.Internet.Email();  // "morris@friesen.us"
-            Faker.Internet.FreeEmail();  // "houston_purdy@yahoo.com"
+                    customerList.Add(customer);
+                }
+            }
+            catch (Exception ex)
+            {
+                //log exception - TO DO
+            }
 
-            Faker.Internet.DomainName();  // "larkinhirthe.com"
-
-            Faker.Phone.Number();  // "(033)216-0058 x0344"
-
-            return isSuccess;
+            return customerList;
         }
+
+        
     }
 }
