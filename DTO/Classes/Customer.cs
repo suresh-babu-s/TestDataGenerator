@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DMP.Falck.GDP.DataGenerator.Interfaces;
+﻿using DMP.Falck.GDP.DTO.Interfaces;
 
-namespace DMP.Falck.GDP.DataGenerator.Classes
+namespace DMP.Falck.GDP.DTO.Classes
 {
     /// <summary>
     /// Class holding customer name, address and other details.

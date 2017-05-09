@@ -1,4 +1,4 @@
-﻿namespace DMP.Falck.GDP.DataGenerator.Interfaces
+﻿namespace DMP.Falck.GDP.DTO.Interfaces
 {
     public interface ICustomer
     {

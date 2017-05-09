@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using DMP.Falck.GDP.DataGenerator.Interfaces;
+using DMP.Falck.GDP.DTO.Interfaces;
 using FluentValidation.Results;
+using System;
 
 namespace DMP.Falck.GDP.DataValidationLibrary.Interfaces
 {
-    public interface ICustomerValidator
+    public interface ICustomerValidator: IDisposable
     {
-        void Dispose();
+        //void Dispose();
         bool IsValidCustomer(ICustomer customer, out IList<ValidationFailure> failures);
     }
 }

@@ -1,13 +1,10 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using DMP.Falck.GDP.DataGenerator.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
+using DMP.Falck.GDP.DTO.Interfaces;
 using DMP.Falck.GDP.DataValidationLibrary.Interfaces;
 
 namespace DMP.Falck.GDP.DataValidationLibrary.Classes
@@ -15,7 +12,7 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
     /// <summary>
     /// Class for performing customer data validation.
     /// </summary>
-    public class CustomerValidator : AbstractValidator<ICustomer>, ICustomerValidator, IDisposable
+    public class CustomerValidator : AbstractValidator<ICustomer>, ICustomerValidator
     {
 
         const int postCodeLength = 4;
@@ -62,6 +59,8 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
             //
             disposed = true;
         }
+
+        #region ["Public Methods"]
 
         /// <summary>
         /// Check for valid post code.
@@ -112,7 +111,9 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
 
             return isValid;
         }
-    }
 
+        #endregion ["Public Methods"]
+
+    }
 
 }

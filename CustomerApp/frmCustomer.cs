@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using DMP.Falck.GDP.DataGenerator.Classes;
+using DMP.Falck.GDP.DataGenerator.Interfaces;
+using DMP.Falck.GDP.DTO.Classes;
+using DMP.Falck.GDP.DTO.Interfaces;
 
 namespace CustomerApp
 {
@@ -29,13 +32,12 @@ namespace CustomerApp
 
             lstCustomers.Items.Clear();
 
-            DMP.Falck.GDP.DataGenerator.Interfaces.IDataGenerator dataGenerator =
-                new DMP.Falck.GDP.DataGenerator.Classes.DataGenerator();
+            IDataGenerator dataGenerator = new DataGenerator();
 
             try
             {
                 DateTime startTime = DateTime.Now;
-                List<DMP.Falck.GDP.DataGenerator.Classes.Customer> customerList = dataGenerator.GenerateData(100000);
+                List<ICustomer> customerList = dataGenerator.GenerateData(noOfCustomers);
                 foreach (Customer customer in customerList)
                 {
                     lstCustomers.Items.Add(customer.FirstName + " " + customer.LastName + " " + customer.RoadName + " " + customer.HouseNumber);

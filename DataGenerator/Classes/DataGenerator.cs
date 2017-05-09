@@ -6,6 +6,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DMP.Falck.GDP.DataGenerator.Interfaces;
+using DMP.Falck.GDP.DataValidationLibrary.Classes;
+using DMP.Falck.GDP.DataValidationLibrary.Interfaces;
+using DMP.Falck.GDP.DTO.Classes;
+using DMP.Falck.GDP.DTO.Interfaces;
+using FluentValidation.Results;
 
 namespace DMP.Falck.GDP.DataGenerator.Classes
 {
@@ -58,27 +63,30 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
         /// </summary>
         /// <param name="noOfCustomersToBeGenerated">No of customers to be generated</param>
         /// <returns>List of customers that has been generated successfully.</returns>
-        public List<Customer> GenerateData(int noOfCustomersToBeGenerated)
+        public List<ICustomer> GenerateData(int noOfCustomersToBeGenerated)
         {
-            List<Customer> customerList = new List<Customer>();
+            List<ICustomer> customerList = new List<ICustomer>();
 
             try
             {
-                for (int count = 0; count < noOfCustomersToBeGenerated; count++)
+                using (ICustomerValidator customerValidator = new CustomerValidator())
                 {
-                    Customer customer = new Customer
+                    for (int count = 0; count < noOfCustomersToBeGenerated; count++)
                     {
-                        FirstName = Faker.Name.First(),
-                        LastName = Faker.Name.Last(),
-                        CompanyName = Faker.Company.Name(),
-                        RoadName = Faker.Address.StreetName(),
-                        MobileNumber = Faker.Phone.Number(),
-                        Email = Faker.Internet.Email(),
-                        PostCode = Faker.Address.ZipCode(),
-                        District = Faker.Address.UsState()
-                    };
+                        Customer customer = new Customer
+                        {
+                            FirstName = Faker.Name.First(),
+                            LastName = Faker.Name.Last(),
+                            CompanyName = Faker.Company.Name(),
+                            RoadName = Faker.Address.StreetName(),
+                            MobileNumber = Faker.Phone.Number(),
+                            Email = Faker.Internet.Email(),
+                            PostCode = Faker.Address.ZipCode(),
+                            District = Faker.Address.UsState()
+                        };
 
-                    customerList.Add(customer);
+                        customerList.Add(customer);
+                    }
                 }
             }
             catch (Exception ex)
@@ -89,6 +97,23 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
             return customerList;
         }
 
-        
+        /// <summary>
+        /// Check whether customer data is valid or not.
+        /// </summary>
+        /// <param name="customerValidator">The customer validator object using which customer object is validated.</param>
+        /// <param name="customer">The customer object to be validated.</param>
+        /// <param name="failure">The list of ValidationFailure objects returned by the fluent library.</param>
+        /// <returns>True if customer object contains valid data else false.</returns>
+        public bool IsValidCustomer(ICustomerValidator customerValidator,
+            ICustomer customer, out IList<ValidationFailure> failure)
+        {
+            bool isValid = false;
+
+            failure = null;
+
+            isValid = customerValidator.IsValidCustomer(customer, out failure);
+
+            return isValid;
+        }
     }
 }
