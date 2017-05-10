@@ -70,7 +70,6 @@
   <ItemGroup>
     <Content Include="Faker\de-DE\Faker.resources.dll" />
     <Content Include="Faker\Faker.dll" />
-    <Content Include="Faker\Faker.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

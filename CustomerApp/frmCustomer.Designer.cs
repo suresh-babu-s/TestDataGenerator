@@ -39,15 +39,15 @@
             this.lstCustomers.FormattingEnabled = true;
             this.lstCustomers.Location = new System.Drawing.Point(12, 17);
             this.lstCustomers.Name = "lstCustomers";
-            this.lstCustomers.Size = new System.Drawing.Size(445, 212);
+            this.lstCustomers.Size = new System.Drawing.Size(626, 212);
             this.lstCustomers.Sorted = true;
             this.lstCustomers.TabIndex = 0;
             // 
             // btnGenerateCustomers
             // 
-            this.btnGenerateCustomers.Location = new System.Drawing.Point(301, 237);
+            this.btnGenerateCustomers.Location = new System.Drawing.Point(515, 236);
             this.btnGenerateCustomers.Name = "btnGenerateCustomers";
-            this.btnGenerateCustomers.Size = new System.Drawing.Size(156, 23);
+            this.btnGenerateCustomers.Size = new System.Drawing.Size(125, 23);
             this.btnGenerateCustomers.TabIndex = 1;
             this.btnGenerateCustomers.Text = "Generate Customers";
             this.btnGenerateCustomers.UseVisualStyleBackColor = true;
@@ -64,10 +64,10 @@
             // 
             // txtNoOfCustomers
             // 
-            this.txtNoOfCustomers.Location = new System.Drawing.Point(195, 238);
+            this.txtNoOfCustomers.Location = new System.Drawing.Point(428, 237);
             this.txtNoOfCustomers.MaxLength = 7;
             this.txtNoOfCustomers.Name = "txtNoOfCustomers";
-            this.txtNoOfCustomers.Size = new System.Drawing.Size(100, 20);
+            this.txtNoOfCustomers.Size = new System.Drawing.Size(81, 20);
             this.txtNoOfCustomers.TabIndex = 3;
             this.txtNoOfCustomers.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNoOfCustomers_KeyPress);
             // 
@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 261);
+            this.ClientSize = new System.Drawing.Size(650, 261);
             this.Controls.Add(this.txtNoOfCustomers);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnGenerateCustomers);

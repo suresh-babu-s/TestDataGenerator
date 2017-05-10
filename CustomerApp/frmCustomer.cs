@@ -40,7 +40,10 @@ namespace CustomerApp
                 List<ICustomer> customerList = dataGenerator.GenerateData(noOfCustomers);
                 foreach (Customer customer in customerList)
                 {
-                    lstCustomers.Items.Add(customer.FirstName + " " + customer.LastName + " " + customer.RoadName + " " + customer.HouseNumber);
+                    //lstCustomers.Items.Add(customer.FirstName + " " + customer.LastName + " : " +
+                    //    customer.RoadName + " : " + customer.HouseNumber + " : " + customer.City);
+                    lstCustomers.Items.Add(customer.FirstName + " " + customer.MiddleName + " : " +
+                        customer.LastName);
                     lstCustomers.Refresh();
                 }
                 lblMessage.Text = "Generated and added " + customerList.Count.ToString() + " customers in " +
@@ -49,7 +52,7 @@ namespace CustomerApp
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error : " + ex.Message);
             }
             btnGenerateCustomers.Enabled = true;
             Cursor.Current = Cursors.Arrow;

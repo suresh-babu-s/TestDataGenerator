@@ -77,12 +77,14 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
                         {
                             FirstName = Faker.Name.First(),
                             LastName = Faker.Name.Last(),
+                            MiddleName=Faker.Name.Middle(),
                             CompanyName = Faker.Company.Name(),
                             RoadName = Faker.Address.StreetName(),
-                            MobileNumber = Faker.Phone.Number(),
-                            Email = Faker.Internet.Email(),
+                            City = Faker.Address.City(),
                             PostCode = Faker.Address.ZipCode(),
-                            District = Faker.Address.UsState()
+                            District = Faker.Address.UsState(),
+                            MobileNumber = Faker.Phone.Number(),
+                            Email = Faker.Internet.Email()
                         };
 
                         customerList.Add(customer);
