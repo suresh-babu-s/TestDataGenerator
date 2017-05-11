@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using FluentValidation;
-using FluentValidation.Results;
+//using FluentValidation;
+//using FluentValidation.Results;
 using DMP.Falck.GDP.DTO.Interfaces;
 using DMP.Falck.GDP.DataValidationLibrary.Interfaces;
 
@@ -12,7 +12,8 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
     /// <summary>
     /// Class for performing customer data validation.
     /// </summary>
-    public class CustomerValidator : AbstractValidator<ICustomer>, ICustomerValidator
+    //public class CustomerValidator : AbstractValidator<ICustomer>, ICustomerValidator
+    public class CustomerValidator : ICustomerValidator
     {
 
         const int postCodeLength = 4;
@@ -25,12 +26,12 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
 
         public CustomerValidator()
         {
-            RuleFor(customer => customer.FirstName).NotEmpty().WithMessage("First name can't be blank!");
-            RuleFor(customer => customer.LastName).NotEmpty().WithMessage("Last name can't be blank!");
-            //RuleFor(customer => customer.RoadName).Length(20, 250);
-            RuleFor(customer => customer.RoadName).NotEmpty().WithMessage("Road name can't be blank!");
-            RuleFor(customer => customer.HouseNumber).NotEmpty().WithMessage("House number can't be blank!");
-            RuleFor(customer => customer.PostCode).Must(IsValidPostcode).WithMessage("Please specify a valid postcode!");
+            //RuleFor(customer => customer.FirstName).NotEmpty().WithMessage("First name can't be blank!");
+            //RuleFor(customer => customer.LastName).NotEmpty().WithMessage("Last name can't be blank!");
+            ////RuleFor(customer => customer.RoadName).Length(20, 250);
+            //RuleFor(customer => customer.RoadName).NotEmpty().WithMessage("Road name can't be blank!");
+            //RuleFor(customer => customer.HouseNumber).NotEmpty().WithMessage("House number can't be blank!");
+            //RuleFor(customer => customer.PostCode).Must(IsValidPostcode).WithMessage("Please specify a valid postcode!");
         }
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -90,27 +91,27 @@ namespace DMP.Falck.GDP.DataValidationLibrary.Classes
         /// <param name="customer">The customer object to be validated.</param>
         /// <param name="failures">List of validation failure messages.</param>
         /// <returns>True if cutomer data is valid else false.</returns>
-        public bool IsValidCustomer(ICustomer customer, out IList<ValidationFailure> failures)
-        {
-            ValidationResult results = null;
+        //public bool IsValidCustomer(ICustomer customer, out IList<ValidationFailure> failures)
+        //{
+        //    ValidationResult results = null;
 
-            bool isValid = false;
+        //    bool isValid = false;
 
-            failures = null;
+        //    failures = null;
 
-            try
-            {
-                results = this.Validate(customer);
-                isValid = results.IsValid;
-                failures = results.Errors;
-            }
-            catch (Exception ex)
-            {
-                //TO Do - Log exception
-            }
+        //    try
+        //    {
+        //        results = this.Validate(customer);
+        //        isValid = results.IsValid;
+        //        failures = results.Errors;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //TO Do - Log exception
+        //    }
 
-            return isValid;
-        }
+        //    return isValid;
+        //}
 
         #endregion ["Public Methods"]
 

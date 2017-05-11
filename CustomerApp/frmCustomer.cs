@@ -42,7 +42,7 @@ namespace CustomerApp
                 {
                     //lstCustomers.Items.Add(customer.FirstName + " " + customer.LastName + " : " +
                     //    customer.RoadName + " : " + customer.HouseNumber + " : " + customer.City);
-                    lstCustomers.Items.Add(customer.FirstName + " " + customer.MiddleName + " : " +
+                    lstCustomers.Items.Add(customer.FirstName + " " + customer.MiddleName + " " +
                         customer.LastName);
                     lstCustomers.Refresh();
                 }

@@ -10,7 +10,7 @@ using DMP.Falck.GDP.DataValidationLibrary.Classes;
 using DMP.Falck.GDP.DataValidationLibrary.Interfaces;
 using DMP.Falck.GDP.DTO.Classes;
 using DMP.Falck.GDP.DTO.Interfaces;
-using FluentValidation.Results;
+//using FluentValidation.Results;
 
 namespace DMP.Falck.GDP.DataGenerator.Classes
 {
@@ -106,16 +106,16 @@ namespace DMP.Falck.GDP.DataGenerator.Classes
         /// <param name="customer">The customer object to be validated.</param>
         /// <param name="failure">The list of ValidationFailure objects returned by the fluent library.</param>
         /// <returns>True if customer object contains valid data else false.</returns>
-        public bool IsValidCustomer(ICustomerValidator customerValidator,
-            ICustomer customer, out IList<ValidationFailure> failure)
-        {
-            bool isValid = false;
+        //public bool IsValidCustomer(ICustomerValidator customerValidator,
+        //    ICustomer customer, out IList<ValidationFailure> failure)
+        //{
+        //    bool isValid = false;
 
-            failure = null;
+        //    failure = null;
 
-            isValid = customerValidator.IsValidCustomer(customer, out failure);
+        //    isValid = customerValidator.IsValidCustomer(customer, out failure);
 
-            return isValid;
-        }
+        //    return isValid;
+        //}
     }
 }
